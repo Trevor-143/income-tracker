@@ -1,24 +1,25 @@
 <template>
   <Header :totalIncome="state.totalIncome" />
   <Form @add-income="addIncome" />
+  <IncomeList :state="state" />
 </template>
 
 <script>
 import Header from './components/Header.vue'
 import Form from './components/Form.vue'
-import { reactive, computed } from 'vue';
+import { reactive, computed } from 'vue'
+import IncomeList from './components/IncomeList.vue'
 
 export default {
   name: 'App',
   components: {
     Header,
-    Form
+    Form,
+    IncomeList
   },
   setup() {
     const state = reactive({
-      income: [ {
-        value: 0
-      }],
+      income: [],
       totalIncome: computed(() => {
         let temp = 0;
         if (state.income.length > 0) {
@@ -27,19 +28,32 @@ export default {
           }
         }
         return temp;
+      }),
+      sortedIncome: computed(() => {
+        let temp =[];
+        temp = state.income.sort(function (a, b) {
+          return b.date - a.date;
+        })
+        return temp
       })
     })
     const addIncome = (data) => {
+      let d = data.date.split('-')
+      let newD = new Date(d[0], d[1], d[2])
+
       state.income = [...state.income, {
         id: Date.now(),
-        desc: date.desc,
-        value: date.value,
-        date: data.date
-      }]
+        desc: data.desc,
+        value: parseInt(data.value),
+        date: newD.getTime()
+      }];
+      console.log(state.income)
     }
 
     return {
-      state
+      state,
+      addIncome,
+      IncomeList
     }
   }
 

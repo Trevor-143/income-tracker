@@ -1,7 +1,7 @@
 <template>
     <header>
         <h1>Income Tracker</h1>
-        <div class="total-income">$ {{ totalIncome }}.00</div>
+        <div class="total-income">shs. {{ totalIncome }}</div>
     </header>
 </template>
 
@@ -23,8 +23,8 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 15px 30px;
-    background-color: #313131;
-    border-bottom: 5px solid #ffce00;
+    background-color: #181818;
+    border-bottom: 5px solid #7a0404;
 
 }
 header h1 {
@@ -34,7 +34,7 @@ header h1 {
 }
 header .total-income {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background: #ffce00;
+    background: #7a0404;
     color: #fff;
     font-size: 20px;
     font-weight: 900;
